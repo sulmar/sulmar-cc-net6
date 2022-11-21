@@ -21,14 +21,8 @@ app.MapGet("/", () => "Hello HelpDesk User!");
 
 app.MapGet("api/users", () => 
 {
-    var users = new List<User> 
-    {
-        new User(1, "John", "Smith") { Email = "john.smith@domain.com" },
-        new User(2, "Kate", "Smith") { Email = "kate.smith@domain.com" },
-        new User(3, "Mark", "Spider") { Email = "mark.spider@domain.com" },
-    };
-
-    return users;
+    
+   throw new NotImplementedException();
     
 });
 
