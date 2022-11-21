@@ -2,11 +2,8 @@
 
 Console.WriteLine("Hello, .NET!");
 
-var user = new User 
+var user = new User(1, "John", "Smith") 
 { 
-    Id = 1, 
-    FirstName = "John", 
-    LastName = "Smith", 
     Email = "john.smith@domain.com",
 };
 

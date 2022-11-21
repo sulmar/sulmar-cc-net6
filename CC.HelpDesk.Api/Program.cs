@@ -23,9 +23,9 @@ app.MapGet("api/users", () =>
 {
     var users = new List<User> 
     {
-        new User { Id = 1, FirstName = "John", LastName = "Smith", Email = "john.smith@domain.com", CreatedOn = DateTime.Parse("2022-11-21 14:00") },
-        new User { Id = 2, FirstName = "Kate", LastName = "Smith", Email = "kate.smith@domain.com" },
-        new User { Id = 3, FirstName = "Mark", LastName = "Spider", Email = "mark.spider@domain.com" },
+        new User(1, "John", "Smith") { Email = "john.smith@domain.com" },
+        new User(2, "Kate", "Smith") { Email = "kate.smith@domain.com" },
+        new User(3, "Mark", "Spider") { Email = "mark.spider@domain.com" },
     };
 
     return users;
@@ -33,7 +33,7 @@ app.MapGet("api/users", () =>
 });
 
 // ## Zastosowanie reguł (constraint)
-app.MapGet("api/users/{id:int:min(1)}", (int id)=> $"Hello user id = {id}");
+app.MapGet("api/users/{id:int:min(1)}", (int id) => new User(id, "John", "Smith"));
 
 app.MapGet("api/users/{name:alpha}", (string name)=>$"Hello user {name}");
 
