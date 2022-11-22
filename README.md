@@ -35,4 +35,5 @@ Przykłady ze szkolenia .NET6
 
 
 ## Polecane
-https://codewithmosh.com/courses/
+- https://codewithmosh.com/courses/
+- https://jsonpatch.com
