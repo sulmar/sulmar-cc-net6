@@ -32,3 +32,7 @@ Przykłady ze szkolenia .NET6
 - ``` dotnet sln remove {folder}``` - usunięcie projektu z folderu z rozwiązania
 - ``` dotnet sln add {project.csproj}``` - dodanie projektu do rozwiązania
 - ``` dotnet sln remove {project.csproj}``` - usunięcie projektu z rozwiązania
+
+
+## Polecane
+https://codewithmosh.com/courses/
