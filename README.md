@@ -5,7 +5,7 @@ Przykłady ze szkolenia .NET6
 
 ### Komendy CLI
 #### Środowisko
-- ``` dotnet --version ``` - wyświetlenie aktualnej wersji SDK
+- ``` dotnet --version ``` - wyświetlenie aktualnie używanej wersji SDK
 - ``` dotnet --list-sdks ``` - wyświetlenie listy zainstalowanych SDK
 - ``` dotnet new globaljson ``` - utworzenie pliku _global.json_
 - ``` dotnet new globaljson --sdk-version {version} ``` - utworzenie pliku _global.json_ i ustawienie wersji SDK
