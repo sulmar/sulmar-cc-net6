@@ -1,4 +1,4 @@
-# sulmar-cc-net6
+# .NET6
 Przykłady ze szkolenia .NET6
 
 ## Podstawy
