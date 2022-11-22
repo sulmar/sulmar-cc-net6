@@ -2,21 +2,58 @@
 
 Console.WriteLine("Hello, .NET!");
 
+decimal amount = 10;
+
+RecalculatePrice(amount);
+
+Console.WriteLine(amount);
+
+var test = new decimal();
+
+// Typy wartościowe (value types)
+// int, decimal, DateTime, struct
+
+// Typy referencyjne (reference types)
+// class
+
 var user = new User(1, "John", "Smith") 
 { 
     Email = "john.smith@domain.com",
+    Salary = 1000  
 };
 
-string x = "10";
+// var newUser = user;
 
-x = "Hello World!";
+var newUser = new User(user.Id, user.FirstName, user.LastName) {
+
+    Email = user.Email,
+    Salary = user.Salary
+};
+
+newUser.Salary = 2000;
+
+Console.WriteLine(user.Salary);
+Console.WriteLine(newUser.Salary);
+
+
+
+RecalculateSalary(user);
+
+Console.WriteLine(user.Salary);
+
+
+#region Testy
+
+
+
+
 
 // Typ anonimowy
 var person = new { user.FirstName, user.LastName };
 
-decimal price = RecalculatePrice(100);
+// decimal price = RecalculatePrice(100);
 
-Console.WriteLine(price);
+// Console.WriteLine(price);
 
 
 Console.WriteLine($"Hello {user.Id} {user.FirstName} {user.LastName}!");
@@ -33,7 +70,19 @@ Console.WriteLine(price2);
 // amount -> amount + 10
 
 
-static decimal RecalculatePrice(decimal amount)
+#endregion
+
+static void RecalculatePrice(decimal amount)
 {
-    return amount + 10;
+    amount = amount + 10;
+
+    Console.WriteLine(amount);
 }
+
+static void RecalculateSalary(User user)
+{
+    user.Salary = user.Salary + 10;
+
+    Console.WriteLine(user.Salary);
+}
+

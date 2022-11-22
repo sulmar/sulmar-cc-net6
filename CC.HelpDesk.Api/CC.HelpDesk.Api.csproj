@@ -2,6 +2,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CC.HelpDesk.Domain\CC.HelpDesk.Domain.csproj" />
+    <ProjectReference Include="..\CC.HelpDesk.IRepositories\CC.HelpDesk.IRepositories.csproj" />
+    <ProjectReference Include="..\CC.HelpDesk.InMemoryRepositories\CC.HelpDesk.InMemoryRepositories.csproj" />
   </ItemGroup>
 
   <PropertyGroup>

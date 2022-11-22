@@ -6,6 +6,7 @@ public interface IUserRepository
 {
     List<User> GetAll();
     User Get(int id);
+    User GetByName(string name);
     void Add(User user);
     void Update(User user);
     void Remove(int id);

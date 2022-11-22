@@ -9,7 +9,7 @@ public class User : BaseEntity
     public string LastName { get; set; }
     public string HashedPassword { get; set; }
     public string Email { get; set; }
-
+    public decimal Salary { get; set; }
 
     // Konstruktor bezparametryczny (parameterless constructor)
     private User()
