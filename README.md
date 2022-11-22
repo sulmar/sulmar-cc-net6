@@ -35,5 +35,16 @@ Przykłady ze szkolenia .NET6
 
 
 ## Polecane
-- https://codewithmosh.com/courses/
-- https://jsonpatch.com
+
+React
+- https://codewithmosh.com/courses/enrolled/357787
+
+- JSON Patch
+https://jsonpatch.com
+
+- How to Run C# in VSCode (Compile, Debug, and Create a Project)
+https://www.youtube.com/watch?v=DAsyjpqhDp4
+
+
+
+https://www.youtube.com/watch?v=DAsyjpqhDp4
