@@ -36,8 +36,8 @@ Przykłady ze szkolenia .NET6
 
 ## Polecane
 
-React
-- https://codewithmosh.com/courses/enrolled/357787
+- React
+https://codewithmosh.com/courses/enrolled/357787
 
 - JSON Patch
 https://jsonpatch.com
@@ -46,5 +46,3 @@ https://jsonpatch.com
 https://www.youtube.com/watch?v=DAsyjpqhDp4
 
 
-
-https://www.youtube.com/watch?v=DAsyjpqhDp4
