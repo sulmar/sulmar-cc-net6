@@ -54,6 +54,7 @@ builder.Host.UseSerilog((context, logger) =>
 {
     string seqHost = builder.Configuration["SeqHost"];
 
+    logger.MinimumLevel.Debug();
     logger.WriteTo.Console();
     logger.WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day);
     logger.WriteTo.File(new CompactJsonFormatter(), "logs/log.json", rollingInterval: RollingInterval.Hour);
@@ -109,10 +110,10 @@ app.MapGet("api/users/{id:int:min(1)}", (int id, IUserRepository userRepository,
     }
 
     // zła praktyka Interpolacja (interpolation)
-    // logger.LogTrace($"Get User By Id={id}");
+    // logger.LogDebug($"Get User By Id={id}");
 
     // dobra praktyka
-    logger.LogInformation("Get user By Id={id}", id);
+    logger.LogDebug("Get user By Id={id}", id);
 
 #if DEBUG
 
