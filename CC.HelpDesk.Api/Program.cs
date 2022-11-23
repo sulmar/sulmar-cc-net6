@@ -16,6 +16,11 @@ builder.Configuration.AddXmlFile("appsettings.xml", optional: false);
 builder.Configuration.AddJsonFile($"appsettings.{environmentName}.json", optional: true); // default
 builder.Configuration.AddCommandLine(args); // dotnet run --nbpapi="domain.com" // default
 builder.Configuration.AddEnvironmentVariables(c=>c.Prefix="CC"); // default
+builder.Configuration.AddUserSecrets<Program>();
+
+// 
+// Windows: cd %APPDATA%\Microsoft\UserSecrets\
+// Linux/MacOS: cd ~/.microsoft/usersecrets
 
 // do przeprowadzania testów integracyjnych
 builder.Configuration.AddInMemoryCollection(
@@ -28,6 +33,8 @@ builder.Configuration.AddInMemoryCollection(
 
 
 string nbpApiUrl = builder.Configuration["NbpApi:Url"];
+
+string azureSecretKey = builder.Configuration["AzureSecretKey"];
 
 builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>();
 
