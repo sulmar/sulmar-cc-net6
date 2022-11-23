@@ -36,6 +36,16 @@ string nbpApiUrl = builder.Configuration["NbpApi:Url"];
 
 string azureSecretKey = builder.Configuration["AzureSecretKey"];
 
+// TODO: w jaki sposób przechowywać sekretne klucze na produkcji?
+// TODO: w jaki sposób testować API bez Postmana?
+// TODO: wyświetlić listę uzytkowników w React.js
+// TODO: middleware
+// TODO: monitoring działania usługi HealthCheck
+// TODO: powiadamianie aplikacji webowej o zmianie statusu
+// TODO: integracja z bazą danych SQL Server (implementacja DbRepositories)
+// TODO: logowanie i role
+
+
 builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>();
 
 /*
