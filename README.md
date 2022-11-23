@@ -55,7 +55,29 @@ https://www.youtube.com/watch?v=DAsyjpqhDp4
 - ``` docker ps -a ``` - wyświetlenie wszystkich kontenerów
 
 ### Seq
+#### Docker
+
 `docker run --name cc-seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest`
+
+##### Docker Compose
+- docker-compose.yml
+
+~~~ yaml
+version: '3.4'
+
+  seq:
+      image: datalust/seq:latest
+      ports:
+        - "5341:80"
+      environment:
+        - ACCEPT_EULA=Y
+      restart: unless-stopped
+      volumes:
+        - ./seq-data:/data
+
+~~~
+
+`docker-compose up`
 
 
 ## Konfiguracja
