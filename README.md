@@ -48,6 +48,9 @@ https://www.youtube.com/watch?v=DAsyjpqhDp4
 
 ## Docker
 
+- _Czemu każdy programista musi znać dockera?_
+https://javamaster.it/czemu-kazdy-programista-musi-znac-dockera/
+
 ### Polecenia
 - ``` docker --version ``` - wyświetlenie wersji 
 - ``` docker images ``` - wyświetlenie listy pobranych obrazów
