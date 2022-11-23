@@ -46,3 +46,9 @@ https://jsonpatch.com
 https://www.youtube.com/watch?v=DAsyjpqhDp4
 
 
+## Docker
+
+### Seq
+
+`docker run --name cc-seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:5341 datalust/seq:latest`
+
