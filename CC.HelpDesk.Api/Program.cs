@@ -44,6 +44,7 @@ string azureSecretKey = builder.Configuration["AzureSecretKey"];
 // TODO: powiadamianie aplikacji webowej o zmianie statusu
 // TODO: integracja z bazą danych SQL Server (implementacja DbRepositories)
 // TODO: logowanie i role
+// TODO: deployment (publish)
 
 
 builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>();
