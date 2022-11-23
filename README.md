@@ -34,6 +34,17 @@ Przykłady ze szkolenia .NET6
 - ``` dotnet sln remove {project.csproj}``` - usunięcie projektu z rozwiązania
 
 
+## REST API
+
+| Akcja   | Przeznaczenie  |  
+|---|---|
+| GET | pobierz |
+| POST | utwórz |
+| PUT | zamień |
+| PATCH | modyfikacja |
+| DELETE | usuń |
+
+
 ## Polecane
 
 - React
