@@ -57,3 +57,9 @@ https://www.youtube.com/watch?v=DAsyjpqhDp4
 ### Seq
 `docker run --name cc-seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest`
 
+
+## Konfiguracja
+
+### User Secrets
+https://www.karltarvas.com/2019/10/28/visual-studio-mac-manage-user-secrets.html
+
