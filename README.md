@@ -69,6 +69,10 @@ https://javamaster.it/czemu-kazdy-programista-musi-znac-dockera/
 - ``` docker ps -a ``` - wyświetlenie wszystkich kontenerów
 
 ### Seq
+
+- UI
+`http://localhost:5341`
+
 #### Docker
 
 `docker run --name cc-seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest`
