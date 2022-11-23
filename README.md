@@ -88,3 +88,9 @@ version: '3.4'
 ### User Secrets
 https://www.karltarvas.com/2019/10/28/visual-studio-mac-manage-user-secrets.html
 
+#### Komendy
+- ``` dotnet user-secrets init ``` - utworzenie sekretów
+- ``` dotnet user-secrets set "{key}" "{value}" ``` - ustawienie wartości klucza
+- ``` dotnet user-secrets list ``` - wyświetlenie listy kluczy i wartości
+- ``` dotnet user-secrets remove "{key}" ``` - usunięcie wskazanego klucza
+- ``` dotnet user-secrets clear ``` - usunięcie wszystkich kluczy
