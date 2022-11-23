@@ -35,5 +35,25 @@ Przykłady ze szkolenia .NET6
 
 
 ## Polecane
-- https://codewithmosh.com/courses/
-- https://jsonpatch.com
+
+- React
+https://codewithmosh.com/courses/enrolled/357787
+
+- JSON Patch
+https://jsonpatch.com
+
+- How to Run C# in VSCode (Compile, Debug, and Create a Project)
+https://www.youtube.com/watch?v=DAsyjpqhDp4
+
+
+## Docker
+
+### Polecenia
+- ``` docker --version ``` - wyświetlenie wersji 
+- ``` docker images ``` - wyświetlenie listy pobranych obrazów
+- ``` docker ps ``` - wyświetlenie uruchomionych kontenerów
+- ``` docker ps -a ``` - wyświetlenie wszystkich kontenerów
+
+### Seq
+`docker run --name cc-seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest`
+
