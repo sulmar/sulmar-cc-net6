@@ -48,7 +48,12 @@ https://www.youtube.com/watch?v=DAsyjpqhDp4
 
 ## Docker
 
-### Seq
+### Polecenia
+- ``` docker --version ``` - wyświetlenie wersji 
+- ``` docker images ``` - wyświetlenie listy pobranych obrazów
+- ``` docker ps ``` - wyświetlenie uruchomionych kontenerów
+- ``` docker ps -a ``` - wyświetlenie wszystkich kontenerów
 
+### Seq
 `docker run --name cc-seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:5341 datalust/seq:latest`
 
