@@ -60,7 +60,7 @@ https://www.youtube.com/watch?v=DAsyjpqhDp4
 `docker run --name cc-seq -d --restart unless-stopped -e ACCEPT_EULA=Y -p 5341:80 datalust/seq:latest`
 
 ##### Docker Compose
-- docker-compose.yml
+1. docker-compose.yml
 
 ~~~ yaml
 version: '3.4'
@@ -77,7 +77,7 @@ version: '3.4'
 
 ~~~
 
-`docker-compose up`
+2. `docker-compose up`
 
 
 ## Konfiguracja
