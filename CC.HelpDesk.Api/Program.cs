@@ -39,8 +39,9 @@ string nbpApiUrl = builder.Configuration["NbpApi:Url"];
 
 string azureSecretKey = builder.Configuration["AzureSecretKey"];
 
+// TODO: atak CSRF - jak to dokładnie działa, gdzie jest przechowywany token?
 // TODO: w jaki sposób przechowywać sekretne klucze na produkcji? - dodać linki 
-// TODO: HttpClient
+// TODO: w jaki sposób podzielić złozony projekt na domeny?
 // TODO: wyświetlić listę uzytkowników w React.js
 // TODO: middleware
 // TODO: powiadamianie aplikacji webowej o zmianie statusu
@@ -114,7 +115,27 @@ builder.Services.AddHealthChecksUI(options =>
 // W przypadku błędu SSL
 // dotnet dev-certs https --trust
 
+// CORS
+builder.Services.AddCors(options=>
+    options.AddDefaultPolicy(policy=>
+    {
+        policy.AllowAnyOrigin();
+        policy.AllowAnyMethod();
+        policy.AllowAnyHeader();
+
+        // policy.WithOrigins("http://localhost:3000", "https:domain.com");
+        // policy.WithMethods(new string[] { "GET"});
+        // policy.AllowAnyHeader();
+    })
+    
+  
+);
+
 var app = builder.Build();
+
+app.UseCors();
+
+
 
 // # MinimalApi
 

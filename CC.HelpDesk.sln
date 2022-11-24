@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CC.HelpDesk.IRepositories",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CC.HelpDesk.InMemoryRepositories", "CC.HelpDesk.InMemoryRepositories\CC.HelpDesk.InMemoryRepositories.csproj", "{B4F286EC-6D00-43F0-A6A0-FE0860575471}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CC.HelpDesk.ReactDotnetApp", "CC.HelpDesk.ReactDotnetApp\CC.HelpDesk.ReactDotnetApp.csproj", "{B808D8D0-6683-445B-92B5-992400F61646}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +44,9 @@ Global
 		{B4F286EC-6D00-43F0-A6A0-FE0860575471}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4F286EC-6D00-43F0-A6A0-FE0860575471}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4F286EC-6D00-43F0-A6A0-FE0860575471}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B808D8D0-6683-445B-92B5-992400F61646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B808D8D0-6683-445B-92B5-992400F61646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B808D8D0-6683-445B-92B5-992400F61646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B808D8D0-6683-445B-92B5-992400F61646}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
