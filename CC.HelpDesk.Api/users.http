@@ -1,0 +1,41 @@
+
+@protocol = https
+@port = 5001
+@host = localhost
+
+@baseUri = {{protocol}}://{{host}}:{{port}}
+
+GET {{baseUri}}/api/users
+
+###
+
+GET {{baseUri}}/api/users/1
+
+###
+
+POST {{baseUri}}/api/users
+Content-Type: application/json
+
+{
+    "FirstName":"Marcin",
+    "LastName":"Sulecki",
+    "Email": "marcin.sulecki@sulmar.pl"
+}
+
+###
+
+PUT {{baseUri}}/api/users/1
+Content-Type: application/json
+
+{
+    "Id":1,
+    "FirstName":"Marcin",
+    "LastName":"Sulecki",
+    "Email": "marcin.sulecki@sulmar.pl"
+}
+
+###
+
+DELETE {{baseUri}}/api/users/1
+
+###
