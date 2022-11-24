@@ -1,6 +1,31 @@
 ﻿using CC.HelpDesk.Domain;
+using System.Net.Http.Json;
 
 Console.WriteLine("Hello, .NET!");
+
+HttpClient client = new HttpClient();
+client.BaseAddress = new Uri("https://localhost:5001");
+
+
+var users = await client.GetFromJsonAsync<List<User>>("api/users");
+
+foreach(var u in users)
+{
+    System.Console.WriteLine($"{u.Id} {u.FirstName} {u.LastName} {u.Email}");
+}
+
+HttpResponseMessage response = await client.GetAsync("api/users");
+
+if (response.IsSuccessStatusCode)
+{
+    var content = await response.Content.ReadAsStringAsync();
+    System.Console.WriteLine(content);
+
+    // using System.Net.Http.Json;
+   
+}
+
+Console.ReadLine();
 
 decimal amount = 10;
 

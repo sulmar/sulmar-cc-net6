@@ -39,8 +39,8 @@ string nbpApiUrl = builder.Configuration["NbpApi:Url"];
 
 string azureSecretKey = builder.Configuration["AzureSecretKey"];
 
-// TODO: monitoring działania usługi HealthCheck
 // TODO: w jaki sposób przechowywać sekretne klucze na produkcji? - dodać linki 
+// TODO: HttpClient
 // TODO: wyświetlić listę uzytkowników w React.js
 // TODO: middleware
 // TODO: powiadamianie aplikacji webowej o zmianie statusu
