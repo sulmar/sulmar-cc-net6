@@ -231,6 +231,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(); // http://localhost:5000/swagger
 
     app.MapHealthChecksUI(); // https://localhost:5001/healthchecks-ui
+}
 
 app.MapHealthChecks("/hc", new HealthCheckOptions
 {
