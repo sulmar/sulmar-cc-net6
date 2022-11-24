@@ -1,23 +1,32 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-export default async function Users() {
-  const response = await axios.get("https://localhost:5001/api/users");
+export default function Users() {
+  const [users, setUsers] = useState([]);
 
-  console.log(response.data);
-  const users = response.data;
+  useEffect(() => {
+    async function getUsers() {
+      try {
+        const response = await axios.get("https://localhost:5001/api/users");
+        const users = response.data;
+        setUsers(users);
+      } catch (err) {
+        console.log("error occured when fetching users");
+      }
+    }
+
+    getUsers();
+  }, []);
 
   return (
     <>
       <ul>
-        {users?.map((person) => (
-          <li>Item</li>
-          // <li key={person.Id}>
-          //   {person.FirstName} {person.LastName}
-          // </li>
+        {users.map((person) => (
+          <li key={person.id}>
+            {person.firstName} {person.lastName}
+          </li>
         ))}
-
-        <li>Item</li>
       </ul>
     </>
   );
