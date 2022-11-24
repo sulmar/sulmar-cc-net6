@@ -109,3 +109,12 @@ https://www.karltarvas.com/2019/10/28/visual-studio-mac-manage-user-secrets.html
 - ``` dotnet user-secrets list ``` - wyświetlenie listy kluczy i wartości
 - ``` dotnet user-secrets remove "{key}" ``` - usunięcie wskazanego klucza
 - ``` dotnet user-secrets clear ``` - usunięcie wszystkich kluczy
+
+## React.JS
+
+### Utworzenie projektu
+
+1. `npx create-react-app foldername`
+2. `cd foldername`
+3. `npm start`
+
