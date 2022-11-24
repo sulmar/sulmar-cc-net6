@@ -10,4 +10,5 @@ public interface IUserRepository
     void Add(User user);
     void Update(User user);
     void Remove(int id);
+    bool Exists(int id);
 }

@@ -35,7 +35,7 @@ public class InMemoryUserRepository : IUserRepository
 
     public User GetByFirstName(string firstName)
     {
-        return users.SingleOrDefault(user => user.FirstName == firstName);
+        return users.SingleOrDefault(user => user.FirstName == firstName); // Linq
     }
 
     
@@ -70,4 +70,9 @@ public class InMemoryUserRepository : IUserRepository
     {
         users.Remove(Get(id));
     }
+    
+    public bool Exists(int id) {
+        return users.Any(user => user.Id == id); // Linq 
+    }
+
 }
