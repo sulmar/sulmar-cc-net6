@@ -4,6 +4,9 @@ using CC.HelpDesk.IRepositories;
 using CC.HelpDesk.InMemoryRepositories;
 using Serilog;
 using Serilog.Formatting.Compact;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using HealthChecks.UI.Client;
 
 // var app = WebApplication.Create();
 
@@ -36,11 +39,10 @@ string nbpApiUrl = builder.Configuration["NbpApi:Url"];
 
 string azureSecretKey = builder.Configuration["AzureSecretKey"];
 
-// TODO: w jaki sposób przechowywać sekretne klucze na produkcji?
-// TODO: dodać testy za pomocą REST Client
+// TODO: monitoring działania usługi HealthCheck
+// TODO: w jaki sposób przechowywać sekretne klucze na produkcji? - dodać linki 
 // TODO: wyświetlić listę uzytkowników w React.js
 // TODO: middleware
-// TODO: monitoring działania usługi HealthCheck
 // TODO: powiadamianie aplikacji webowej o zmianie statusu
 // TODO: integracja z bazą danych SQL Server (implementacja DbRepositories)
 // TODO: logowanie i role
@@ -81,8 +83,36 @@ builder.Host.UseSerilog((context, logger) =>
 
 // dotnet add package Serilog.AspNetCore
 
+// dotnet add package Swashbuckle.AspNetCore
 
+// Rejestracja usług do generowania dokumentacji
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options => 
+{
+    options.SwaggerDoc("v1", new() { Title = "CC HelpDesk API", Version="1.0" });
+});
 
+// Rejestracja usług do sprawdzania kondyncji Health Check
+builder.Services.AddHealthChecks()
+    .AddCheck("Ping", ()=> HealthCheckResult.Healthy())
+    .AddCheck("Random", () =>
+    {
+        if (DateTime.Now.Minute % 2 == 0)
+            return HealthCheckResult.Healthy();
+        else
+            return HealthCheckResult.Unhealthy();
+    });
+
+// dotnet add package AspNetCore.HealthChecks.UI
+// dotnet add package AspNetCore.HealthChecks.UI.InMemory.Storage
+builder.Services.AddHealthChecksUI(options =>
+{
+    options.SetEvaluationTimeInSeconds(15);
+    options.AddHealthCheckEndpoint("CC HelpDesk", "/hc");
+}).AddInMemoryStorage();
+
+// W przypadku błędu SSL
+// dotnet dev-certs https --trust
 
 var app = builder.Build();
 
@@ -96,6 +126,7 @@ var app = builder.Build();
 // DELETE - usuń
 
 
+app.MapGet("ping", () => Results.Ok("Pong"));
 
 
 
@@ -139,7 +170,9 @@ app.MapGet("api/users/{id:int:min(1)}", (int id, IUserRepository userRepository,
         return Results.NotFound(); // 404 NotFound
 
     return Results.Ok(user);   // 200 OK
-}).WithName("GetUserById");
+}).WithName("GetUserById")
+.Produces<User>(StatusCodes.Status200OK)
+.Produces(StatusCodes.Status404NotFound);
 
 app.MapGet("api/users/{name:alpha}", (string name, IUserRepository userRepository) =>
 {
@@ -173,6 +206,9 @@ app.MapPut("api/users/{id}", (int id, User user, IUserRepository userRepository)
     if (id != user.Id)
         return Results.BadRequest();
 
+    if (!userRepository.Exists(id))
+        return Results.NotFound();
+
     // TODO: dodać walidację 
     userRepository.Update(user);
 
@@ -181,11 +217,26 @@ app.MapPut("api/users/{id}", (int id, User user, IUserRepository userRepository)
 
 app.MapDelete("api/users/{id}", (int id, IUserRepository userRepository) =>
 {
-    // TODO: dodac sprawdzenie czy uzytkownik istnieje
+    if (!userRepository.Exists(id))
+        return Results.NotFound();
 
     userRepository.Remove(id);
 
     return Results.Ok();
 });
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(); // http://localhost:5000/swagger
+
+    app.MapHealthChecksUI(); // https://localhost:5001/healthchecks-ui
+
+app.MapHealthChecks("/hc", new HealthCheckOptions
+{
+    // dotnet add package AspNetCore.HealthChecks.UI.Client
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
+
 
 app.Run();
