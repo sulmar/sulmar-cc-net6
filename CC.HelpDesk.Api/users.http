@@ -3,17 +3,17 @@
 @port = 5001
 @host = localhost
 
-@baseUri = {{protocol}}://{{host}}:{{port}}
+@baseUrl = {{protocol}}://{{host}}:{{port}}
 
-GET {{baseUri}}/api/users
-
-###
-
-GET {{baseUri}}/api/users/1
+GET {{baseUrl}}/api/users
 
 ###
 
-POST {{baseUri}}/api/users
+GET {{baseUrl}}/api/users/1
+
+###
+
+POST {{baseUrl}}/api/users
 Content-Type: application/json
 
 {
