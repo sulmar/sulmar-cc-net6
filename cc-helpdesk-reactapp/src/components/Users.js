@@ -1,13 +1,15 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import api from "../api";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
 
   const getUsers = async () => {
     try {
-      const response = await axios.get("https://localhost:5001/api/users");
+      // const response = await axios.get("https://localhost:5001/api/users");
+      const response = await api.get("/api/users");
       const users = response.data;
       setUsers(users);
     } catch (err) {
