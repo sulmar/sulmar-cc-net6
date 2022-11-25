@@ -1,4 +1,4 @@
-namespace CC.HelpDesk.Domain;
+namespace CC.Core.Domain;
 
 public abstract class Base
 {

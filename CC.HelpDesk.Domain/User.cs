@@ -1,4 +1,6 @@
-﻿namespace CC.HelpDesk.Domain;
+﻿using CC.Core.Domain;
+
+namespace CC.HelpDesk.Domain;
 
 
 
