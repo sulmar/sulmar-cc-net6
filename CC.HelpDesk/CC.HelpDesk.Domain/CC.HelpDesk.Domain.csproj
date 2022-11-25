@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\CC.Core\CC.Core.Domain\CC.Core.Domain.csproj" />
+    <ProjectReference Include="..\..\CC.Core\CC.Core.Domain\CC.Core.Domain.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
