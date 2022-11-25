@@ -8,6 +8,7 @@ using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
 using CC.HelpDesk.Api;
+using CC.HelpDesk.Api.Middlewares;
 
 // var app = WebApplication.Create();
 
@@ -40,7 +41,6 @@ string nbpApiUrl = builder.Configuration["NbpApi:Url"];
 
 string azureSecretKey = builder.Configuration["AzureSecretKey"];
 
-// TODO: middleware
 // TODO: powiadamianie aplikacji webowej o zmianie statusu
 // TODO: integracja z bazą danych SQL Server (implementacja DbRepositories)
 // TODO: bezpieczeństwo (uwierzytelnianie i autoryzacja)
@@ -141,15 +141,17 @@ app.Use(async (context, next)=>
     Console.WriteLine($"{context.Response.StatusCode}");
 });
 
-app.Use(async (context, next)=>
-{
-    if (context.Request.Headers.TryGetValue("X-Secret-Key", out var secretKey) 
-                        && secretKey == builder.Configuration["SecretKey"])
-        await next();
-    else
-        context.Response.StatusCode = StatusCodes.Status403Forbidden;
+// app.Use(async (context, next)=>
+// {
+//     if (context.Request.Headers.TryGetValue("X-Secret-Key", out var secretKey) 
+//                         && secretKey == builder.Configuration["SecretKey"])
+//         await next();
+//     else
+//         context.Response.StatusCode = StatusCodes.Status403Forbidden;
    
-});
+// });
+
+app.UseMiddleware<SecretKeyMiddleware>();
 
 app.UseCors();
 
