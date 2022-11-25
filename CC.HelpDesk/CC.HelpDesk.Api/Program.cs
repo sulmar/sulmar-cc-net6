@@ -151,7 +151,8 @@ app.Use(async (context, next)=>
    
 // });
 
-app.UseMiddleware<SecretKeyMiddleware>();
+// app.UseMiddleware<SecretKeyMiddleware>();
+app.UseSecretKey();
 
 app.UseCors();
 
