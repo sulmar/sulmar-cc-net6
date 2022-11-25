@@ -40,13 +40,13 @@ string nbpApiUrl = builder.Configuration["NbpApi:Url"];
 string azureSecretKey = builder.Configuration["AzureSecretKey"];
 
 // TODO: atak CSRF - jak to dokładnie działa, gdzie jest przechowywany token?
-// TODO: w jaki sposób przechowywać sekretne klucze na produkcji? - dodać linki 
-// TODO: w jaki sposób podzielić złozony projekt na domeny?
 // TODO: wyświetlić listę uzytkowników w React.js
+// TODO: refaktoring endpointów
+// TODO: w jaki sposób podzielić złozony projekt na domeny?
 // TODO: middleware
 // TODO: powiadamianie aplikacji webowej o zmianie statusu
 // TODO: integracja z bazą danych SQL Server (implementacja DbRepositories)
-// TODO: logowanie i role
+// TODO: bezpieczeństwo (uwierzytelnianie i autoryzacja)
 // TODO: deployment (publish)
 
 
