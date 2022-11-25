@@ -40,15 +40,12 @@ string nbpApiUrl = builder.Configuration["NbpApi:Url"];
 
 string azureSecretKey = builder.Configuration["AzureSecretKey"];
 
-// TODO: atak CSRF - jak to dokładnie działa, gdzie jest przechowywany token?
-
-// TODO: refaktoring endpointów
-// TODO: w jaki sposób podzielić złozony projekt na domeny?
 // TODO: middleware
 // TODO: powiadamianie aplikacji webowej o zmianie statusu
 // TODO: integracja z bazą danych SQL Server (implementacja DbRepositories)
 // TODO: bezpieczeństwo (uwierzytelnianie i autoryzacja)
 // TODO: deployment (publish)
+// TODO: kompresja
 
 
 builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>();
@@ -133,6 +130,26 @@ builder.Services.AddCors(options=>
 );
 
 var app = builder.Build();
+
+// Logger Middleware
+app.Use(async (context, next)=>
+{
+    Console.WriteLine($"{DateTime.Now} {context.Request.Method} {context.Request.Path}");
+
+    await next();
+
+    Console.WriteLine($"{context.Response.StatusCode}");
+});
+
+app.Use(async (context, next)=>
+{
+    if (context.Request.Headers.TryGetValue("X-Secret-Key", out var secretKey) 
+                        && secretKey == builder.Configuration["SecretKey"])
+        await next();
+    else
+        context.Response.StatusCode = StatusCodes.Status403Forbidden;
+   
+});
 
 app.UseCors();
 
