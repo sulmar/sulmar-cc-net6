@@ -5,17 +5,27 @@ import axios from "axios";
 export default function Users() {
   const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    async function getUsers() {
-      try {
-        const response = await axios.get("https://localhost:5001/api/users");
-        const users = response.data;
-        setUsers(users);
-      } catch (err) {
-        console.log("error occured when fetching users");
-      }
+  const getUsers = async () => {
+    try {
+      const response = await axios.get("https://localhost:5001/api/users");
+      const users = response.data;
+      setUsers(users);
+    } catch (err) {
+      console.log("error occured when fetching users");
     }
+  };
 
+  useEffect(() => {
+    // async function getUsers() {
+    //   try {
+    //     const response = await axios.get("https://localhost:5001/api/users");
+    //     const users = response.data;
+    //     setUsers(users);
+    //   } catch (err) {
+    //     console.log("error occured when fetching users");
+    //   }
+    // }
+    console.log("get users");
     getUsers();
   }, []);
 
