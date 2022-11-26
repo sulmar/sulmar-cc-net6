@@ -23,6 +23,11 @@ public class SecretKeyMiddleware
 
     public async Task InvokeAsync(HttpContext context)
     {
+        //  if (context.User.Identity.IsAuthenticated)
+        //  {
+
+        //  }
+
             if (context.Request.Headers.TryGetValue("X-Secret-Key", out var secretKey) 
                         && secretKey == configuration["SecretKey"])
                 await next(context);
