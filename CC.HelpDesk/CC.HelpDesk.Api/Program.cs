@@ -45,6 +45,7 @@ string azureSecretKey = builder.Configuration["AzureSecretKey"];
 // TODO: dodać przykład z załącznikiem
 // TODO: powiadamianie aplikacji webowej o zmianie statusu
 // TODO: integracja z bazą danych SQL Server (implementacja DbRepositories)
+// TODO: dodać odnośnik z przykładem do Dapper
 // TODO: bezpieczeństwo (uwierzytelnianie i autoryzacja)
 // TODO: deployment (publish)
 // TODO: kompresja
