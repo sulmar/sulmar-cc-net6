@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
 using CC.HelpDesk.Api;
 using CC.HelpDesk.Api.Middlewares;
+using Microsoft.AspNetCore.Authentication.Negotiate;
 
 // var app = WebApplication.Create();
 
@@ -41,6 +42,7 @@ string nbpApiUrl = builder.Configuration["NbpApi:Url"];
 
 string azureSecretKey = builder.Configuration["AzureSecretKey"];
 
+// TODO: dodać przykład z załącznikiem
 // TODO: powiadamianie aplikacji webowej o zmianie statusu
 // TODO: integracja z bazą danych SQL Server (implementacja DbRepositories)
 // TODO: bezpieczeństwo (uwierzytelnianie i autoryzacja)
@@ -129,6 +131,24 @@ builder.Services.AddCors(options=>
   
 );
 
+// dotnet add package Microsoft.AspNetCore.Authentication.Negotiate --version 6.0.0
+// builder.Services.AddAuthentication(options =>
+// {
+//     options.DefaultAuthenticateScheme = 
+// })
+// .AddJwtBearer()
+// builder.Services.AddAuthorization();
+
+
+// https://learn.microsoft.com/en-us/aspnet/core/security/authentication/windowsauth?view=aspnetcore-7.0&tabs=visual-studio
+builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme)
+   .AddNegotiate();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = options.DefaultPolicy;
+});
+
 var app = builder.Build();
 
 // Logger Middleware
@@ -152,7 +172,9 @@ app.Use(async (context, next)=>
 // });
 
 // app.UseMiddleware<SecretKeyMiddleware>();
-app.UseSecretKey();
+// app.UseSecretKey();
+
+app.UseAuthorization();
 
 app.UseCors();
 
