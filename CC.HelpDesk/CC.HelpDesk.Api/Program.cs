@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using CC.HelpDesk.Domain;
 using CC.HelpDesk.IRepositories;
-using CC.HelpDesk.InMemoryRepositories;
+using CC.HelpDesk.Infrastructure;
 using Serilog;
 using Serilog.Formatting.Compact;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
@@ -175,7 +175,7 @@ app.Use(async (context, next)=>
 // app.UseMiddleware<SecretKeyMiddleware>();
 // app.UseSecretKey();
 
-app.UseAuthorization();
+// app.UseAuthorization();
 
 app.UseCors();
 

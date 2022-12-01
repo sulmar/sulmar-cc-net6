@@ -1,5 +1,5 @@
 using CC.HelpDesk.IRepositories;
-using CC.HelpDesk.InMemoryRepositories;
+using CC.HelpDesk.Infrastructure;
 
 namespace CC.HelpDesk.Api;
 

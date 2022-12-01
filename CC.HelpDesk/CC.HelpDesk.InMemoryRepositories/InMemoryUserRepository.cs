@@ -2,7 +2,7 @@
 using CC.HelpDesk.Domain;
 using System.Linq;
 
-namespace CC.HelpDesk.InMemoryRepositories;
+namespace CC.HelpDesk.Infrastructure;
 
 public class InMemoryUserRepository : IUserRepository
 {
