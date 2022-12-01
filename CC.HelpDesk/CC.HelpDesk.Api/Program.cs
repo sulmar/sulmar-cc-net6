@@ -1,14 +1,9 @@
-using Microsoft.AspNetCore.Builder;
-using CC.HelpDesk.Domain;
-using CC.HelpDesk.IRepositories;
-using CC.HelpDesk.Infrastructure;
 using Serilog;
 using Serilog.Formatting.Compact;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
 using CC.HelpDesk.Api;
-using CC.HelpDesk.Api.Middlewares;
 using Microsoft.AspNetCore.Authentication.Negotiate;
 
 // var app = WebApplication.Create();
@@ -47,7 +42,6 @@ string azureSecretKey = builder.Configuration["AzureSecretKey"];
 // TODO: integracja z bazą danych SQL Server (implementacja DbRepositories)
 // TODO: dodać odnośnik z przykładem do Dapper
 // TODO: bezpieczeństwo (uwierzytelnianie i autoryzacja)
-// TODO: deployment (publish)
 // TODO: kompresja
 
 builder.Services.AddUserRepositories();
