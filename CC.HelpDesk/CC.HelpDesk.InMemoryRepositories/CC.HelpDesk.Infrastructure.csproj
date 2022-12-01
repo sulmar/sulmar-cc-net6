@@ -1,6 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.11" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\CC.HelpDesk.Domain\CC.HelpDesk.Domain.csproj" />
     <ProjectReference Include="..\CC.HelpDesk.IRepositories\CC.HelpDesk.IRepositories.csproj" />
     <ProjectReference Include="..\..\CC.Core\CC.Core.Domain\CC.Core.Domain.csproj" />

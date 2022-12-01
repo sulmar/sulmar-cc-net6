@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using HealthChecks.UI.Client;
 using CC.HelpDesk.Api;
 using Microsoft.AspNetCore.Authentication.Negotiate;
+using CC.HelpDesk.Api.Extensions;
+using CC.HelpDesk.Infrastructure;
+using CC.HelpDesk.Domain;
 
 // var app = WebApplication.Create();
 
@@ -13,10 +16,10 @@ var builder = WebApplication.CreateBuilder(args);
 string environmentName = builder.Environment.EnvironmentName;
 
 builder.Configuration.AddJsonFile($"appsettings.json", optional: false, reloadOnChange: true); // default
-builder.Configuration.AddXmlFile("appsettings.xml", optional: false); 
+builder.Configuration.AddXmlFile("appsettings.xml", optional: false);
 builder.Configuration.AddJsonFile($"appsettings.{environmentName}.json", optional: true); // default
 builder.Configuration.AddCommandLine(args); // dotnet run --nbpapi="domain.com" // default
-builder.Configuration.AddEnvironmentVariables(c=>c.Prefix="CC"); // default
+builder.Configuration.AddEnvironmentVariables(c => c.Prefix = "CC"); // default
 builder.Configuration.AddUserSecrets<Program>();
 
 // 
@@ -44,7 +47,16 @@ string azureSecretKey = builder.Configuration["AzureSecretKey"];
 // TODO: bezpieczeństwo (uwierzytelnianie i autoryzacja)
 // TODO: kompresja
 
-builder.Services.AddUserRepositories();
+var connectionString = builder.Configuration.GetConnectionString("HelpDeskConnectionString");
+
+builder.Services.AddSingleton(sp => new List<User>
+{
+    new User("John", "Smith") { Email = "john.smith@domain.com", HashedPassword = "202cb962ac59075b964b07152d234b70" },
+    new User("Kate", "Smith") { Email = "kate.smith@domain.com", HashedPassword = "202cb962ac59075b964b07152d234b70"  },
+    new User( "Mark", "Spider") { Email = "mark.spider@domain.com", HashedPassword = "202cb962ac59075b964b07152d234b70" },
+});
+
+builder.Services.AddDbHelpDeskRepositories(connectionString);
 
 
 
@@ -84,14 +96,14 @@ builder.Host.UseSerilog((context, logger) =>
 
 // Rejestracja usług do generowania dokumentacji
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options => 
+builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new() { Title = "CC HelpDesk API", Version="1.0" });
+    options.SwaggerDoc("v1", new() { Title = "CC HelpDesk API", Version = "1.0" });
 });
 
 // Rejestracja usług do sprawdzania kondyncji Health Check
 builder.Services.AddHealthChecks()
-    .AddCheck("Ping", ()=> HealthCheckResult.Healthy())
+    .AddCheck("Ping", () => HealthCheckResult.Healthy())
     .AddCheck("Random", () =>
     {
         if (DateTime.Now.Minute % 2 == 0)
@@ -112,8 +124,8 @@ builder.Services.AddHealthChecksUI(options =>
 // dotnet dev-certs https --trust
 
 // CORS
-builder.Services.AddCors(options=>
-    options.AddDefaultPolicy(policy=>
+builder.Services.AddCors(options =>
+    options.AddDefaultPolicy(policy =>
     {
         policy.AllowAnyOrigin();
         policy.AllowAnyMethod();
@@ -123,8 +135,8 @@ builder.Services.AddCors(options=>
         // policy.WithMethods(new string[] { "GET"});
         // policy.AllowAnyHeader();
     })
-    
-  
+
+
 );
 
 // dotnet add package Microsoft.AspNetCore.Authentication.Negotiate --version 6.0.0
@@ -148,7 +160,7 @@ builder.Services.AddAuthorization(options =>
 var app = builder.Build();
 
 // Logger Middleware
-app.Use(async (context, next)=>
+app.Use(async (context, next) =>
 {
     Console.WriteLine($"{DateTime.Now} {context.Request.Method} {context.Request.Path}");
 
@@ -164,7 +176,7 @@ app.Use(async (context, next)=>
 //         await next();
 //     else
 //         context.Response.StatusCode = StatusCodes.Status403Forbidden;
-   
+
 // });
 
 // app.UseMiddleware<SecretKeyMiddleware>();
@@ -185,7 +197,8 @@ app.UseCors();
 // PATCH - modyfikacja
 // DELETE - usuń
 
-
+app.CreateDatabase<ApiDbContext>();
+app.SeedUsers();
 
 app.MapHelpDesk();
 

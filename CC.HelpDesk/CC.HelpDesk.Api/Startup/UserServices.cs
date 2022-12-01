@@ -1,6 +1,7 @@
 using CC.HelpDesk.IRepositories;
 using CC.HelpDesk.Infrastructure;
 using CC.HelpDesk.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace CC.HelpDesk.Api;
 
@@ -13,19 +14,33 @@ public static class HelpDeskServices
 
         return services;
     }
+
+    public static IServiceCollection AddDbHelpDeskRepositories(this IServiceCollection services, string connectionString)
+    {
+        // dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.11
+        services.AddDbContextPool<ApiDbContext>(options => options.UseSqlServer(connectionString));
+
+        services.AddDbUserRepositories();
+
+        return services;
+    }
+
+
 }
 
 public static class UserServices
 {
+    public static IServiceCollection AddDbUserRepositories(this IServiceCollection services)
+    {
+        services.AddScoped<IUserRepository, EFDbUserRepository>();
+
+        return services;
+
+    }
+
     public static IServiceCollection AddUserRepositories(this IServiceCollection services)
     {
-        services.AddSingleton<IUserRepository, InMemoryUserRepository>();
-        services.AddSingleton(sp => new List<User>
-        {
-            new User(1, "John", "Smith") { Email = "john.smith@domain.com" },
-            new User(2, "Kate", "Smith") { Email = "kate.smith@domain.com" },
-            new User(3, "Mark", "Spider") { Email = "mark.spider@domain.com" },
-        });
+        services.AddSingleton<IUserRepository, InMemoryUserRepository>();     
 
         return services;
     }

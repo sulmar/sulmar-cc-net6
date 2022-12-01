@@ -20,10 +20,9 @@ public class User : BaseEntity
     }
 
     // Konstruktor parametryczny
-    public User(int id, string firstName, string lastName)
+    public User(string firstName, string lastName)
         : this()
-    {
-        Id = id;
+    {        
         FirstName = firstName;
         LastName = lastName;
     }
