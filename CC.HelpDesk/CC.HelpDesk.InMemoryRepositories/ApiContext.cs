@@ -1,4 +1,5 @@
 ﻿using CC.HelpDesk.Domain;
+using CC.HelpDesk.Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,11 @@ namespace CC.HelpDesk.Infrastructure
         public DbSet<User> Users { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
+        }
     }
 }
