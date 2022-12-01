@@ -50,8 +50,9 @@ string azureSecretKey = builder.Configuration["AzureSecretKey"];
 // TODO: deployment (publish)
 // TODO: kompresja
 
+builder.Services.AddUserRepositories();
 
-builder.Services.AddSingleton<IUserRepository, InMemoryUserRepository>();
+
 
 /*
 builder.Services.AddSingleton<IUserRepository, DbUserRepository>();

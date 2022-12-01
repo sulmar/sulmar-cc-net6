@@ -48,7 +48,8 @@ public static class UserEndpoints
 
             return users;
 
-        }).RequireAuthorization();
+        });
+        //.RequireAuthorization();
 
         // ## Zastosowanie reguł (constraint)
         app.MapGet("api/users/{id:int:min(1)}", (int id, IUserRepository userRepository, ILogger<Program> logger) =>

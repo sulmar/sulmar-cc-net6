@@ -6,16 +6,11 @@ namespace CC.HelpDesk.Infrastructure;
 
 public class InMemoryUserRepository : IUserRepository
 {
-    private List<User> users;
+    private readonly List<User> users;
 
-    public InMemoryUserRepository()
+    public InMemoryUserRepository(List<User> users)
     {
-        users = new List<User> 
-        {
-            new User(1, "John", "Smith") { Email = "john.smith@domain.com" },
-            new User(2, "Kate", "Smith") { Email = "kate.smith@domain.com" },
-            new User(3, "Mark", "Spider") { Email = "mark.spider@domain.com" },
-        };
+        this.users = users;
     }
 
     public List<User> GetAll()
