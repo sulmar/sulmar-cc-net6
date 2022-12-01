@@ -8,6 +8,7 @@ namespace CC.HelpDesk.Domain
         public string Description { get; set; }
         public TicketStatus Status { get; set; }
         public User AssignedTo { get; set; }
+        public TimeSpan? Duration { get; set; }
     }
 
     public enum TicketStatus
