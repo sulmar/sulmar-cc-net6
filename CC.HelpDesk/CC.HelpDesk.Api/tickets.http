@@ -1,0 +1,15 @@
+
+@protocol = https
+@port = 5001
+@host = localhost
+
+@baseUrl = {{protocol}}://{{host}}:{{port}}
+
+##
+
+PUT {{baseUrl}}/api/tickets/1
+Content-Type: application/json
+
+1
+
+##

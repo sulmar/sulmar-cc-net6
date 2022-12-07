@@ -21,6 +21,7 @@ public static class HelpDeskServices
         services.AddDbContextPool<ApiDbContext>(options => options.UseSqlServer(connectionString));
 
         services.AddDbUserRepositories();
+        services.AddDbTicketRepositories();
 
         return services;
     }
@@ -33,6 +34,7 @@ public static class UserServices
     public static IServiceCollection AddDbUserRepositories(this IServiceCollection services)
     {
         services.AddScoped<IUserRepository, EFDbUserRepository>();
+        services.AddScoped<ITicketRepository, EFDbTicketRepository>();
 
         return services;
 
@@ -40,7 +42,7 @@ public static class UserServices
 
     public static IServiceCollection AddUserRepositories(this IServiceCollection services)
     {
-        services.AddSingleton<IUserRepository, InMemoryUserRepository>();     
+        services.AddSingleton<IUserRepository, InMemoryUserRepository>();
 
         return services;
     }

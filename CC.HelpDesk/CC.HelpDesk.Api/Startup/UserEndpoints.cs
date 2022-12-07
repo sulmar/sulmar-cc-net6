@@ -17,6 +17,7 @@ public static class Endpoints
         app.MapBasicEndpoints();
         app.MapUserEndpoints();
         app.MapFileEndpoints();
+        app.MapTicketEndpoints();
 
         return app;
     }

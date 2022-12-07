@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.Negotiate;
 using CC.HelpDesk.Api.Extensions;
 using CC.HelpDesk.Infrastructure;
 using CC.HelpDesk.Domain;
+using CC.HelpDesk.Api.Hubs;
 
 // var app = WebApplication.Create();
 
@@ -40,7 +41,7 @@ string nbpApiUrl = builder.Configuration["NbpApi:Url"];
 
 string azureSecretKey = builder.Configuration["AzureSecretKey"];
 
-// TODO: powiadamianie aplikacji webowej o zmianie statusu
+// TODO: dodać do aplikacji webowej odbieranie komunikatu signalr o zmianie statusu
 // TODO: dodać odnośnik z przykładem do Dapper
 // TODO: bezpieczeństwo (uwierzytelnianie i autoryzacja)
 // TODO: kompresja
@@ -155,6 +156,8 @@ builder.Services.AddAuthorization(options =>
     options.FallbackPolicy = options.DefaultPolicy;
 });
 
+builder.Services.AddSignalR();
+
 var app = builder.Build();
 
 // Logger Middleware
@@ -218,5 +221,6 @@ app.MapHealthChecks("/hc", new HealthCheckOptions
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
 
+app.MapHub<TicketsHub>("/signalr/tickets");
 
 app.Run();

@@ -3,6 +3,7 @@ using CC.HelpDesk.IRepositories;
 
 namespace CC.HelpDesk.Infrastructure
 {
+
     public class EFDbUserRepository : IUserRepository
     {
         private readonly ApiDbContext context;
