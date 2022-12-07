@@ -9,6 +9,7 @@ using CC.HelpDesk.Api.Extensions;
 using CC.HelpDesk.Infrastructure;
 using CC.HelpDesk.Domain;
 using CC.HelpDesk.Api.Hubs;
+using Microsoft.AspNetCore.ResponseCompression;
 
 // var app = WebApplication.Create();
 
@@ -44,7 +45,6 @@ string azureSecretKey = builder.Configuration["AzureSecretKey"];
 // TODO: dodać do aplikacji webowej odbieranie komunikatu signalr o zmianie statusu
 // TODO: dodać odnośnik z przykładem do Dapper
 // TODO: bezpieczeństwo (uwierzytelnianie i autoryzacja)
-// TODO: kompresja
 
 var connectionString = builder.Configuration.GetConnectionString("HelpDeskConnectionString");
 
@@ -158,6 +158,13 @@ builder.Services.AddAuthorization(options =>
 
 builder.Services.AddSignalR();
 
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+    options.Providers.Add<BrotliCompressionProvider>();
+    options.Providers.Add<GzipCompressionProvider>();
+});
+
 var app = builder.Build();
 
 // Logger Middleware
@@ -187,7 +194,7 @@ app.Use(async (context, next) =>
 
 app.UseCors();
 
-
+app.UseResponseCompression();
 
 // # MinimalApi
 
