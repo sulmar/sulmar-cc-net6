@@ -40,7 +40,6 @@ string nbpApiUrl = builder.Configuration["NbpApi:Url"];
 
 string azureSecretKey = builder.Configuration["AzureSecretKey"];
 
-// TODO: dodać przykład z załącznikiem
 // TODO: powiadamianie aplikacji webowej o zmianie statusu
 // TODO: dodać odnośnik z przykładem do Dapper
 // TODO: bezpieczeństwo (uwierzytelnianie i autoryzacja)
