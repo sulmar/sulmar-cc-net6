@@ -1,10 +1,25 @@
-﻿namespace CC.HelpDesk.Api;
+﻿using System.Net.Mime;
+
+namespace CC.HelpDesk.Api;
 
 public static class FileEndpoints
 {
     public static WebApplication MapFileEndpoints(this WebApplication app)
     {
-        app.MapGet("upload", (HttpRequest request) =>
+        app.MapGet("api/download", (string filename) =>
+        {
+            string path = Path.Combine(app.Environment.ContentRootPath, "downloads", filename);
+
+            if (!File.Exists(path))
+            {
+                return Results.NotFound();
+            }
+
+            return Results.File(path, MediaTypeNames.Application.Pdf);
+        }
+        );
+
+        app.MapGet("api/upload", (HttpRequest request) =>
         {
             if (!request.HasFormContentType)
             {
@@ -28,7 +43,7 @@ public static class FileEndpoints
             return Results.NoContent();
 
         });
-        
+
 
         return app;
     }

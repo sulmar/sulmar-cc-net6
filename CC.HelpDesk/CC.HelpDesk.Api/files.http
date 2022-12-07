@@ -1,0 +1,12 @@
+
+@protocol = https
+@port = 5001
+@host = localhost
+
+@baseUrl = {{protocol}}://{{host}}:{{port}}
+
+###
+
+GET {{baseUrl}}/api/download?filename=lorem-ipsum.pdf
+
+###
