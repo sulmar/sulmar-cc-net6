@@ -28,10 +28,12 @@ Przykłady ze szkolenia .NET6
 #### Rozwiązanie
 - ``` dotnet new sln ``` - utworzenie nowego rozwiązania
 - ``` dotnet new sln --name {name} ``` - utworzenie nowego rozwiązania o określonej nazwie
-- ``` dotnet sln add {folder}``` - dodanie projektu z folderu do rozwiązania
-- ``` dotnet sln remove {folder}``` - usunięcie projektu z folderu z rozwiązania
-- ``` dotnet sln add {project.csproj}``` - dodanie projektu do rozwiązania
-- ``` dotnet sln remove {project.csproj}``` - usunięcie projektu z rozwiązania
+- ``` dotnet sln add {folder} ``` - dodanie projektu z folderu do rozwiązania
+- ``` dotnet sln remove {folder} ``` - usunięcie projektu z folderu z rozwiązania
+- ``` dotnet sln add {project.csproj} ``` - dodanie projektu do rozwiązania
+- ``` dotnet sln remove {project.csproj} ``` - usunięcie projektu z rozwiązania
+- ``` dotnet sln list ``` - lista projektów w rozwiązaniu
+
 
 
 ## REST API
