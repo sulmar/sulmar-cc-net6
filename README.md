@@ -21,8 +21,9 @@ Przykłady ze szkolenia .NET6
 - ``` dotnet run {app.dll}``` - uruchomienie aplikacji
 - ``` dotnet test ``` - uruchomienie testów jednostkowych
 - ``` dotnet watch test ``` - uruchomienie testów jednostkowych w trybie śledzenia zmian
-- ``` dotnet add {project.csproj} reference {library.csproj} ``` - dodanie odwołania do biblioteki
-- ``` dotnet remove {project.csproj} reference {library.csproj} ``` - usunięcie odwołania do biblioteki
+- ``` dotnet add reference {library.csproj} ``` - dodanie odwołania do biblioteki
+- ``` dotnet remove reference {library.csproj} ``` - usunięcie odwołania do biblioteki
+- ``` dotnet list reference ``` - lista wszystkich odwołań w projekcie
 - ``` dotnet clean ``` - wyczyszczenie wyniku kompilacji, czyli zawartości folderu pośredniego _obj_ oraz folderu końcowego _bin_
 
 #### Rozwiązanie
